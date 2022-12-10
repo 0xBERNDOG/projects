@@ -1,2 +1,2 @@
-# projects
-Documentation website for my projects
+# Projects
+This is a website documenting those of my projects lucky enough to be documented
