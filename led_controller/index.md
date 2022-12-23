@@ -23,7 +23,7 @@ The biggest change was that I moved all components to the top, and I increased t
 
 ### Rev 2.0 (ATSAMD21)
 ![Rev 2.0](./images/rev20.jpg)
-I wasn't satisfied with the cost of FTDI chips, and I wanted to simplify the board so I redesigned it to use an ATSAMD21. I had to change my mind while the PCBs were in transit because I found it impossible to get a J-Link EDU.
+I wasn't satisfied with the cost of FTDI chips, and I wanted to simplify the board so I redesigned it to use an ATSAMD21. I had to change my mind while the PCBs were in transit because I found it impossible to get a J-Link EDU. I changed from 2-layers to 4-layers here, and having power + GND planes helped massively with routing.
 
 ### Rev 3.0 (ATMEGA32U4)
 ![Rev 3.0](./images/rev30.jpg)
