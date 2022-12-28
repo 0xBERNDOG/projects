@@ -27,8 +27,11 @@ I wasn't satisfied with the cost of FTDI chips, and I wanted to simplify the boa
 
 ### Rev 3.0 (ATMEGA32U4)
 ![Rev 3.0](./images/rev30.jpg)
-I was having a good experience using the Pololu USB AVR Programmer (ISP), so I went for the ATMEGA32U4. I had also dialed in my soldering to the point that I felt comfortable switching to 0603 components. This is the current latest hardware revision, and so far it's working with no issues identified yet.
-I haven't yet tried to use a battery (planning on using a 18650), and I can almost gurantee that I'll be changing the JST 3+4 pin connectors because of how difficult they are to buy and because I expect that the supported wire gauges will be too small for the current I expect to draw.
+I was having a good experience using the Pololu USB AVR Programmer (ISP), so I went for the ATMEGA32U4. I had also dialed in my soldering to the point that I felt comfortable switching to 0603 components. Unfortunately I accidentally coupled P-channel MOSFETs with the AP9101CK6 battery protection IC when I should have used N-channel.
+
+### Rev 3.1 (ATMEGA32U4)
+![Rev 3.1](./images/rev31.jpg)
+I had hoped that implementing USB wouldn't be that difficult because of the ATMEGA32U4's USB capability, but I was mistaken. Once I realised that I would have to use up a significant amount of flash on a USB stack (e.g. LUFA) I decided to go back to having a dedicated USB-UART bridge (CP1202N). This had the added benefit of USB current detection. I also swapped out the JST connectors for Molex Pico-SPOX which are easier/cheaper to source. I also incorporated an 18650 holder.
 
 ## Schematics
 Todo: cleanup + publish schematic
