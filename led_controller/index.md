@@ -31,7 +31,7 @@ I was having a good experience using the Pololu USB AVR Programmer (ISP), so I w
 
 ### Rev 3.1 (ATMEGA32U4)
 ![Rev 3.1](./images/rev31.jpg)
-I had hoped that implementing USB wouldn't be that difficult because of the ATMEGA32U4's USB capability, but I was mistaken. Once I realised that I would have to use up a significant amount of flash on a USB stack (e.g. LUFA) I decided to go back to having a dedicated USB-UART bridge (CP1202N). This had the added benefit of USB current detection. I also swapped out the JST connectors for Molex Pico-SPOX which are easier/cheaper to source. I also incorporated an 18650 holder.
+I had hoped that implementing USB wouldn't be that difficult because of the ATMEGA32U4's USB capability, but I was mistaken. Once I realised that I would have to use up a significant amount of flash on a USB stack (e.g. LUFA) I decided to go back to having a dedicated USB-UART bridge (CP1202N). This had the added benefit of USB current detection. I also swapped out the JST connectors for Molex Pico-SPOX which are easier/cheaper to source, and incorporated an 18650 holder.
 
 ## Schematics
 Todo: cleanup + publish schematic
