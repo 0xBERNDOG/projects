@@ -1,37 +1,36 @@
 # LED Strip Controller
 ## Summary
-Hardware + software project (from scratch)
-Addressable LED strip controller with 1S Li-Ion battery charging, controlled by an 8-bit AVR microcontroller
-Not yet finished, currently on hardware revision 3.0
+I'm working on a hardware and software project from scratch to create an addressable LED strip controller with 1S Li-Ion battery charging and an 8-bit AVR microcontroller. I'm not done yet, and currently on hardware revision 3.1.
 
 ## Motivation
-I started rollerblading in July 2022 and saw somebody with LEDs attached to their skates. This project started as an excuse to learn how to program a microcontroller from scratch (i.e. no Arduino libraries). I ended up going through the entire product lifecycle -- schematic design, component selection, PCB manufacture and assembly, programming, and enclosure design.
+I started this project because I wanted to learn how to program a microcontroller from scratch, without using Arduino libraries. I've gone through the whole process of creating a product - designing the schematics, choosing components, making and assembling the PCB, programming, and designing the enclosure.
 
 ## Hardware Revisions
-The schematics went through some iterations, but didn't change significantly once it was first finished. Hardware revisions were mostly changes to layout, or component selection.
+I've made a few changes to the hardware along the way, mostly related to layout or component selection.
 
 ### Rev 1.0 (ATMEGA328PB)
 ![Rev 1.0 (first attempt)](./images/rev10.jpg)
-First time working with SMD components, so I chose 0806. I also decided to try using a frying pan as a hotplate; if you look closely you can see where some of the flux has burnt slightly, but the electrical connections were still okay. U7 (3V3 to 5V level shifter) is missing because I ordered one with a different footprint by accident. It was also at this stage that I realised that putting the USB-C connector on the bottom meant that I had to hand-solder it.
+This was my first time using SMD components, so I went with 0806. I also tried using a frying pan as a hotplate and you can see some burnt flux, but the connections are okay. U7 (the 3V3 to 5V level shifter) is missing because I ordered the wrong component by accident. I also realized that the USB-C connector had to be hand-soldered because I put it on the bottom of the board.
 
 ![Rev 1.0 (second attempt)](./images/rev10_1.jpg)
-I waited for the new level shifter to arrive, and this time I populated the through-hole parts too. You can see that the board is covered in flux residue, even after a huge amount of effort to clean it off. I couldn't successfully solder the USB-C connector, even with a hot air gun, and this board never powered on successfully.
+I got the new level shifter and also soldered in the through-hole components. You can see that the board is covered in flux residue, even though I tried to clean it in an isopropyl alcohol bath. I couldn't get the USB-C connector to solder, even with a hot air gun, and the board never powered on.
 
 ### Rev 1.1 (ATMEGA328PB)
 ![Rev 1.1](./images/rev11.jpg)
-The biggest change was that I moved all components to the top, and I increased the length of the important USB-C pads just incase I needed to do any touchups with an iron (thankfully I didn't). I was able to program the MCU, but there was a problem with the USB-to-serial bridge and the USB switching IC (the jumper wire going off-image was for bypassing the switch).
+The biggest change was moving all the components to the top of the board. I also lengthened the important USB-C pads in case I needed to touch them up with an iron (luckily I didn't). I was able to program the MCU, but there was a problem with the USB-to-serial bridge and the USB switching IC (I used a jumper wire to bypass the switch).
 
 ### Rev 2.0 (ATSAMD21)
 ![Rev 2.0](./images/rev20.jpg)
-I wasn't satisfied with the cost of FTDI chips, and I wanted to simplify the board so I redesigned it to use an ATSAMD21. I had to change my mind while the PCBs were in transit because I found it impossible to get a J-Link EDU. I changed from 2-layers to 4-layers here, and having power + GND planes helped massively with routing.
+I wasn't happy with the cost of FTDI chips, so I redesigned the board to use an ATSAMD21 and make it simpler. But while the PCBs were being made, I couldn't get a J-Link EDU, so I had to switch to a different MCU.
 
 ### Rev 3.0 (ATMEGA32U4)
 ![Rev 3.0](./images/rev30.jpg)
-I was having a good experience using the Pololu USB AVR Programmer (ISP), so I went for the ATMEGA32U4. I had also dialed in my soldering to the point that I felt comfortable switching to 0603 components. Unfortunately I accidentally coupled P-channel MOSFETs with the AP9101CK6 battery protection IC when I should have used N-channel.
+I had a good experience with the Pololu USB AVR Programmer (ISP), so I went with the ATMEGA32U4. I also felt confident enough in my soldering to switch to 0603 components. Unfortunately I made a mistake by using P-channel MOSFETs with the AP9101CK6 battery protection IC instead of N-channel MOSFETs, but USB power worked.
 
 ### Rev 3.1 (ATMEGA32U4)
 ![Rev 3.1](./images/rev31.jpg)
-I had hoped that implementing USB wouldn't be that difficult because of the ATMEGA32U4's USB capability, but I was mistaken. Once I realised that I would have to use up a significant amount of flash on a USB stack (e.g. LUFA) I decided to go back to having a dedicated USB-UART bridge (CP1202N). This had the added benefit of USB current detection. I also swapped out the JST connectors for Molex Pico-SPOX which are easier/cheaper to source, and incorporated an 18650 holder.
+I thought implementing USB would be simple because of the ATMEGA32U4's USB capability, but I was wrong. Once I realized that I would need to use a lot of flash on a USB stack (e.g. LUFA) I decided to go back to using a dedicated USB-UART bridge (CP1202N), which also gave me USB current detection. I also changed the JST connectors to Molex Pico-SPOX, which are easier and cheaper to find, and added an 18650 holder.
+Waiting for the boards to be produced as of 29DEC22.
 
 ## Schematics
 Todo: cleanup + publish schematic
