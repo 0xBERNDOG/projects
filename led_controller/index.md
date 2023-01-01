@@ -36,4 +36,4 @@ Waiting for the boards to be produced as of 29DEC22.
 Todo: cleanup + publish schematic
 
 ## Code
-Todo: publish to GitHub
+[GitHub](https://github.com/texruska/led_strip_controller)
