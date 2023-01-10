@@ -31,7 +31,8 @@ I had a good experience with the Pololu USB AVR Programmer (ISP), so I went with
 ![Rev 3.1 (first attempt)](./images/rev31_1.jpg)
 I thought implementing USB would be simple because of the ATMEGA32U4's USB capability, but I was wrong. Once I realized that I would need to use a lot of flash on a USB stack (e.g. LUFA) I decided to go back to using a dedicated USB-UART bridge (CP1202N), which also gave me USB current detection. I also changed the JST connectors to Molex Pico-SPOX, which are easier and cheaper to find, and added an 18650 holder.
 
-The first attempt passed the smoke test, but I had to reflow a MOSFET by CP1202N. Unfortunately this went horribly wrong as evidenced by some missing components.
+![Rev 3.1 (schematic mistake)](./images/rev31_2.png)
+The first attempt passed the smoke test, but the 5V and 3V3 supplies weren't working. I initially through that there was a problem with the solder joints on a MOSFET by the CP1202N, which I unsuccessfully attempted to reflow using air (see the missing components), but this didn't fix the problem. I eventually tracked down a short between 3V8 (output of BQ24072) and GND - at some point between revision 3.0 and 3.1 I had swapped arounds some pins on the on/off switch and inadvertently created a short (see schematic). I was able to salvage things by de-soldering the switch and bypassing it altogether while waiting for rev 3.2 to arrive.
 
 ## Schematics
 Todo: cleanup + publish schematic
