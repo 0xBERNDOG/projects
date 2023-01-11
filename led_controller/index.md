@@ -28,11 +28,19 @@ I wasn't happy with the cost of FTDI chips, so I redesigned the board to use an 
 I had a good experience with the Pololu USB AVR Programmer (ISP), so I went with the ATMEGA32U4. I also felt confident enough in my soldering to switch to 0603 components. Unfortunately I made a mistake by using P-channel MOSFETs with the AP9101CK6 battery protection IC instead of N-channel MOSFETs, but USB power worked.
 
 ### Rev 3.1 (ATMEGA32U4)
-![Rev 3.1 (first attempt)](./images/rev31_1.jpg)
-I thought implementing USB would be simple because of the ATMEGA32U4's USB capability, but I was wrong. Once I realized that I would need to use a lot of flash on a USB stack (e.g. LUFA) I decided to go back to using a dedicated USB-UART bridge (CP1202N), which also gave me USB current detection. I also changed the JST connectors to Molex Pico-SPOX, which are easier and cheaper to find, and added an 18650 holder.
+![Rev 3.1](./images/rev31_1.jpg)
+
+#### Changes
+I thought implementing USB would be simple because of the ATMEGA32U4’s USB capability, but I was wrong. Once I realized that I would need to use a lot of flash on a USB stack (e.g. LUFA) I decided to go back to using a dedicated USB-UART bridge (CP1202N), which also gave me USB current detection.
+I also changed the JST connectors to Molex Pico-SPOX, which are easier and cheaper to find, and added an 18650 holder.
+
+#### Problems
+This revision passed the smoke test, but the 5V and 3V3 supplies weren’t working.
+I initially thought it was a problem with the soldering on the MOSFET near the CP1202N and tried reflowing the solder joints  (notice some missing components due to a hot air mishap), but it didn't fix the issue.
+I eventually tracked down a short between 3V8 (output of BQ24072) and GND - at some point between revision 3.0 and 3.1 I had swapped arounds some pins on the on/off switch and inadvertently created a short (see schematic). I was able to salvage things by de-soldering the switch and bypassing it entirely.
+I also discovered that I had connected CP1202N's VDD/VREGIN pins to 3V3 instead of VBUS, but as a workaround I cut the traces and am using a jumper wire to power the IC, but this isn't an issue when running on just battery power.
 
 ![Rev 3.1 (schematic mistake)](./images/rev31_2.png)
-The first attempt passed the smoke test, but the 5V and 3V3 supplies weren't working. I initially thought that there was a problem with the solder joints on a MOSFET by the CP1202N, which I unsuccessfully attempted to reflow using air (see the missing components), but this didn't fix the problem. I eventually tracked down a short between 3V8 (output of BQ24072) and GND - at some point between revision 3.0 and 3.1 I had swapped arounds some pins on the on/off switch and inadvertently created a short (see schematic). I was able to salvage things by de-soldering the switch and bypassing it altogether while waiting for rev 3.2 to arrive.
 
 ## Schematics
 Todo: cleanup + publish schematic
