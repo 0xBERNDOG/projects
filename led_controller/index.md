@@ -42,6 +42,9 @@ I also discovered that I had connected CP1202N's VDD/VREGIN pins to 3V3 instead 
 
 ![Rev 3.1 (schematic mistake)](./images/rev31_2.png)
 
+### Rev 4.0 (nrf52)
+It should have been obvious from the start, but the ATMEGA32U4 running at 8MHz (or even 16MHz) is barely able to properly drive WS2812 strips because the timing requirements are so tight. I've wanted to move to an nrf52 for some time now, mainly so that I can add Bluetooth.
+
 ## Schematics
 Todo: cleanup + publish schematic
 
